@@ -35,6 +35,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 
+
 /* backend config
 terraform {
   backend "<BACKEND_NAME>" {
