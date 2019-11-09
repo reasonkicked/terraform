@@ -51,7 +51,7 @@ terraform {
     region         = "eu-west-1"
 
     # Replace this with your DynamoDB table name!
-    dynamodb_table = "terraform-up-and-running-locks"
+    dynamodb_table = "terraform-up-and-running-locks-ts-pgs"
     encrypt        = true
   }
 }
