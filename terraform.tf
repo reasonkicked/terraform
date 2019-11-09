@@ -153,6 +153,9 @@ resource "aws_launch_configuration" "example" {
     create_before_destroy = true
   }
 }
+data "aws_vpc" "default" {
+  default = true
+}
 data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 }
