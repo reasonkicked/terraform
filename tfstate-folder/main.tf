@@ -34,3 +34,11 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 }
+
+/* backend config
+terraform {
+  backend "<BACKEND_NAME>" {
+    [CONFIG...]
+  }
+}
+*/
