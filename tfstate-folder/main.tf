@@ -34,7 +34,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 }
-
+#com
 
 
 /* backend config to store config in s3
