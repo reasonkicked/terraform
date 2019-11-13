@@ -37,6 +37,8 @@ resource "aws_dynamodb_table" "terraform_locks" {
 #com
 
 
+
+
 /* backend config to store config in s3
 terraform {
   backend "<BACKEND_NAME>" {
