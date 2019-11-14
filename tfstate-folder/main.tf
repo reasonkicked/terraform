@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "terraform_state" {
 }
 
 resource "aws_instance" "example-workspace" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-02df9ea15c1778c9c"
   instance_type = "t2.micro"
 }
 resource "aws_dynamodb_table" "terraform_locks" {
