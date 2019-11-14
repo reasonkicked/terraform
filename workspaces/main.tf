@@ -1,10 +1,12 @@
 provider "aws" {
   region = "eu-west-1"
 }
-resource "aws_instance" "example-workspace" {
-  iam:PassRole
+
+iam:PassRole
 ec2:AssociateIamInstanceProfile
 ec2:ReplaceIamInstanceProfileAssociation
+resource "aws_instance" "example-workspace" {
+  
   ami           = "ami-02df9ea15c1778c9c"
   instance_type = "t2.micro"
 }
