@@ -10,10 +10,6 @@ resource "aws_s3_bucket" "terraform_state" {
     prevent_destroy = true
   }
 
-resource "aws_instance" "example-workspace" {
-  ami           = "ami-0c55b159cbfafe1f0"
-  instance_type = "t2.micro"
-}
   # Enable versioning so we can see the full revision history of our
   # state files
   versioning {
@@ -28,6 +24,11 @@ resource "aws_instance" "example-workspace" {
       }
     }
   }
+}
+
+resource "aws_instance" "example-workspace" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
 }
 resource "aws_dynamodb_table" "terraform_locks" {
   name         = "terraform-up-and-running-locks-ts-pgs"
