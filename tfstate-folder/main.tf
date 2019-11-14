@@ -40,19 +40,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 #com
-terraform {
-  backend "s3" {
 
-     # Replace this with your bucket name!
-    bucket         = "terraform-up-and-running-state-ts-pgs"
-    key            = "workspaces-example/terraform.tfstate"
-    region         = "eu-west-1"
-
-    # Replace this with your DynamoDB table name!
-    dynamodb_table = "terraform-up-and-running-locks-ts-pgs"
-    encrypt        = true
-  }
-}
 /* backend config to store config in s3
 terraform {
   backend "<BACKEND_NAME>" {
