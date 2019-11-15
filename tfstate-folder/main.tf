@@ -1,42 +1,16 @@
 provider "aws" {
   region = "eu-west-1"
 }
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-up-and-running-state-ts-pgs"
-
-
-  # Prevent accidental deletion of this S3 bucket
-  lifecycle {
-    prevent_destroy = true
-  }
-
-
-  # Enable versioning so we can see the full revision history of our
-  # state files
-  versioning {
-    enabled = true
-  }
-
-  # Enable server-side encryption by default
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+resource "aws_instance" "example" {
+  ami           = "ami-02df9ea15c1778c9c"
+  instance_type = "t2.micro"
+    tags          = {
+    Name        = "Application Server"
+    Owner = "tstanislawczyk"
+    
     }
-  }
-}
-resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "terraform-up-and-running-locks-ts-pgs"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "LockID"
 
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
 }
-#com
 
 /* backend config to store config in s3
 terraform {
@@ -57,14 +31,4 @@ terraform {
     encrypt        = true
 
   }
-}
-
-output "s3_bucket_arn" {
-  value       = aws_s3_bucket.terraform_state.arn
-  description = "The ARN of the S3 bucket"
-  }
-
-output "dynamodb_table_name" {
-  value       = aws_dynamodb_table.terraform_locks.name
-  description = "The name of the DynamoDB table"
 }
