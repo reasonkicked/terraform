@@ -23,7 +23,7 @@ terraform {
   backend "s3" {
     # Replace this with your bucket name!
     bucket         = "terraform-up-and-running-state-ts-pgs"
-    key            = "global/s3/terraform.tfstate"
+    key            = "workspaces-example/terraform.tfstate"
     region         = "eu-west-1"
 
     # Replace this with your DynamoDB table name!
