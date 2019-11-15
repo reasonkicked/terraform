@@ -59,6 +59,8 @@ output "public_ip" {
 }
 
 
+
+
 /*
 output "<NAME>" {
   value = <VALUE>
