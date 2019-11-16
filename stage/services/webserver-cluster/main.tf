@@ -7,17 +7,26 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.instance.id] #<PROVIDER>_<TYPE>.<NAME>.<ATTRIBUTE>
 
-    user_data = <<-EOF
+    /*user_data = <<-EOF
     #!/bin/bash
     echo "Hello, World" > index.html
-    /*echo "${data.terraform_remote_state.db.outputs.address}" >> index.html
-    echo "${data.terraform_remote_state.db.outputs.port}" >> index.html*/
+    echo "${data.terraform_remote_state.db.outputs.address}" >> index.html
+    echo "${data.terraform_remote_state.db.outputs.port}" >> index.html
     nohup busybox httpd -f -p ${var.server_port} &
-    EOF
+    EOF*/
 
   tags = {
      Name        = "Application Server"
     Owner = "tstanislawczyk"
+  }
+}
+data "template_file" "user_data" {
+  template = file("user-data.sh")
+
+  vars = {
+    server_port = var.server_port
+    db_address  = data.terraform_remote_state.db.outputs.address
+    db_port     = data.terraform_remote_state.db.outputs.port
   }
 }
 
@@ -38,12 +47,7 @@ resource "aws_launch_configuration" "example" {
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instance.id]
 
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p ${var.server_port} &
-              EOF
-
+ 
   # Required when using a launch configuration with an auto scaling group.
   # https://www.terraform.io/docs/providers/aws/r/launch_configuration.html
   lifecycle {
