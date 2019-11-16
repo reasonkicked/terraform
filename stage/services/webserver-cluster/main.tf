@@ -10,6 +10,8 @@ resource "aws_instance" "example" {
     user_data = <<-EOF
     #!/bin/bash
     echo "Hello, World" > index.html
+    echo "${data.terraform_remote_state.db.outputs.address}" >> index.html
+    echo "${data.terraform_remote_state.db.outputs.port}" >> index.html
     nohup busybox httpd -f -p ${var.server_port} &
     EOF
 
@@ -149,6 +151,8 @@ resource "aws_lb_listener_rule" "asg" {
     target_group_arn = aws_lb_target_group.asg.arn
   }
 }
+
+
 data "terraform_remote_state" "db" {
   backend = "s3"
 
@@ -173,3 +177,5 @@ terraform {
 
   }
 }
+
+
