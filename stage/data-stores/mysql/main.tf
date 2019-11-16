@@ -19,7 +19,7 @@ terraform {
     # Replace this with your bucket name!
     bucket         = "terraform-up-and-running-state-ts-pgs"
     key            = "stage/data-stores/mysql/terraform.tfstate"
-    region         = "us-east-2"
+    region         = "eu-west-1"
 
     # Replace this with your DynamoDB table name!
     dynamodb_table = "terraform-up-and-running-locks-ts-pgs01"
