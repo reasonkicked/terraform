@@ -153,12 +153,12 @@ data "terraform_remote_state" "db" {
   backend = "s3"
 
   config = {
-    bucket = "(terraform-up-and-running-state-ts-pgs)"
+    bucket = "terraform-up-and-running-state-ts-pgs"
     key    = "stage/data-stores/mysql/terraform.tfstate"
     region = "eu-west-1"
   }
 }
-/*
+
 #show new ip
 terraform {
   backend "s3" {
@@ -173,4 +173,3 @@ terraform {
 
   }
 }
-*/
