@@ -11,5 +11,5 @@ resource "aws_db_instance" "example" {
   username            = "admin"
 
   # How should we set the password?
-  password            = "???"
+  password            = "db_password"
 }
