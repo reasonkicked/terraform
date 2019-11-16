@@ -20,7 +20,7 @@ terraform {
 }
 */
 resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "terraform-up-and-running-locks-ts-pgs"
+  name         = "terraform-up-and-running-locks-ts-pgs01"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
@@ -37,7 +37,7 @@ terraform {
     region         = "eu-west-1"
 
     # Replace this with your DynamoDB table name!
-    dynamodb_table = "terraform-up-and-running-locks-ts-pgs"
+    dynamodb_table = "terraform-up-and-running-locks-ts-pgs01"
     encrypt        = true
 
   }
