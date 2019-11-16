@@ -13,3 +13,16 @@ resource "aws_db_instance" "example" {
   # How should we set the password?
   password            = "db_password"
 }
+
+terraform {
+  backend "s3" {
+    # Replace this with your bucket name!
+    bucket         = "terraform-up-and-running-state-ts-pgs"
+    key            = "stage/data-stores/mysql/terraform.tfstate"
+    region         = "us-east-2"
+
+    # Replace this with your DynamoDB table name!
+    dynamodb_table = "terraform-up-and-running-locks-ts-pgs01"
+    encrypt        = true
+  }
+}
