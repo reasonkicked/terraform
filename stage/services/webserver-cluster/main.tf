@@ -158,6 +158,7 @@ data "terraform_remote_state" "db" {
     region = "eu-west-1"
   }
 }
+/*
 #show new ip
 terraform {
   backend "s3" {
@@ -172,3 +173,4 @@ terraform {
 
   }
 }
+*/
