@@ -3,7 +3,7 @@ provider "aws" {
 }
 resource "aws_instance" "example" {
 
-  ami           = "ami-02df9ea15c1778c9c"
+  ami           = "ami-0be057a22c63962cb"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.instance.id] #<PROVIDER>_<TYPE>.<NAME>.<ATTRIBUTE>
 
@@ -32,7 +32,7 @@ resource "aws_security_group" "instance" {
 
 
 resource "aws_launch_configuration" "example" {
-  image_id        = "ami-02df9ea15c1778c9c"
+  image_id        = "ami-0be057a22c63962cb"
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instance.id]
 
