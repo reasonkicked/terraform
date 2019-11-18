@@ -6,4 +6,4 @@
 <p>DB port: ${db_port}</p>
 EOF
 
-nohup busybox httpd -f -p ${80} &
+nohup busybox httpd -f -p ${server_port} &
