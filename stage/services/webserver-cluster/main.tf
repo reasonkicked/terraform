@@ -5,17 +5,7 @@ resource "aws_instance" "example" {
 
   ami           = "ami-0be057a22c63962cb"
   instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.instance.id] #<PROVIDER>_<TYPE>.<NAME>.<ATTRIBUTE>
-
-    /*user_data = <<-EOF
-    #!/bin/bash
-    echo "Hello, World" > index.html
-    echo "${data.terraform_remote_state.db.outputs.address}" >> index.html
-    echo "${data.terraform_remote_state.db.outputs.port}" >> index.html
-    nohup busybox httpd -f -p ${var.server_port} &
-    EOF*/
-
-
+  vpc_security_group_ids = [aws_security_group.instance.id]
 
   tags = {
      Name        = "Application Server"
@@ -114,6 +104,12 @@ resource "aws_security_group" "alb" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   # Allow all outbound requests
   egress {
@@ -122,6 +118,7 @@ resource "aws_security_group" "alb" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  
 }
 
 #target group
