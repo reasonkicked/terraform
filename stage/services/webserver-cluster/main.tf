@@ -1,7 +1,7 @@
 provider "aws" {
     region = "eu-west-2"
 }
-/*resource "aws_instance" "example" {
+resource "aws_instance" "example" {
 
   ami           = "ami-0be057a22c63962cb"
   instance_type = "t2.micro"
@@ -13,7 +13,7 @@ provider "aws" {
     echo "${data.terraform_remote_state.db.outputs.address}" >> index.html
     echo "${data.terraform_remote_state.db.outputs.port}" >> index.html
     nohup busybox httpd -f -p ${var.server_port} &
-    EOF
+    EOF*/
 
 provisioner "local-exec" {
     command = "echo ${aws_instance.web.private_ip} >> private_ips.txt"
@@ -23,7 +23,7 @@ provisioner "local-exec" {
      Name        = "Application Server"
     Owner = "tstanislawczyk"
   }
-}*/
+}
 data "template_file" "user_data" {
   template = file("user-data.sh")
 
