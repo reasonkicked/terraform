@@ -15,20 +15,15 @@ resource "aws_instance" "example" {
     nohup busybox httpd -f -p ${var.server_port} &
     EOF*/
 
-    user_data = <<EOF
-#!/bin/bash
-echo "Hello, World" >> index.html
-echo "${data.terraform_remote_state.db.outputs.address}" >> index.html
-echo "${data.terraform_remote_state.db.outputs.port}" >> index.html
-nohup busybox httpd -f -p ${var.server_port} &
-EOF
+provisioner "local-exec" {
+    command = "echo ${aws_instance.web.private_ip} >> private_ips.txt"
+  }
 
   tags = {
      Name        = "Application Server"
     Owner = "tstanislawczyk"
   }
-}
-data "template_file" "user_data" {
+  data "template_file" "user_data" {
   template = file("user-data.sh")
 
   vars = {
@@ -36,6 +31,8 @@ data "template_file" "user_data" {
     db_address  = data.terraform_remote_state.db.outputs.address
     db_port     = data.terraform_remote_state.db.outputs.port
   }
+}
+
 }
 
 resource "aws_security_group" "instance" {
