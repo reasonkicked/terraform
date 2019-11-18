@@ -15,9 +15,7 @@ resource "aws_instance" "example" {
     nohup busybox httpd -f -p ${var.server_port} &
     EOF*/
 
-provisioner "local-exec" {
-    command = "echo ${aws_instance.web.private_ip} >> private_ips.txt"
-  }
+
 
   tags = {
      Name        = "Application Server"
