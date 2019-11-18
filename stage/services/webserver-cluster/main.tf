@@ -23,7 +23,8 @@ provisioner "local-exec" {
      Name        = "Application Server"
     Owner = "tstanislawczyk"
   }
-  data "template_file" "user_data" {
+}
+data "template_file" "user_data" {
   template = file("user-data.sh")
 
   vars = {
@@ -31,8 +32,6 @@ provisioner "local-exec" {
     db_address  = data.terraform_remote_state.db.outputs.address
     db_port     = data.terraform_remote_state.db.outputs.port
   }
-}
-
 }
 
 resource "aws_security_group" "instance" {
