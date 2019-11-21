@@ -21,7 +21,7 @@ data "template_file" "user_data" {
 }
 
 resource "aws_security_group" "instance" {
-  name = "terraform-example-instance"
+  name = "${var.cluster_name}-instance"
 
   ingress {
     from_port   = var.server_port
