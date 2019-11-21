@@ -3,6 +3,16 @@ provider "aws" {
 }
 
 
+resource "aws_dynamodb_table" "terraform-up-and-running-locks-ts-pgs02" {
+  name         = "terraform-up-and-running-locks-ts-pgs02"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
 resource "aws_db_instance" "prod_database" {
   identifier_prefix   = "terraform-up-and-running_prod"
   engine              = "mysql"
