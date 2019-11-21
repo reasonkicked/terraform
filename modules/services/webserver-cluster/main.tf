@@ -11,7 +11,7 @@ resource "aws_instance" "example" {
   }
 }
 data "template_file" "user_data" {
-  template = file("user-data.sh")
+  template = file("${path.module}/user-data.sh")
 
   vars = {
     server_port = var.server_port
@@ -52,6 +52,7 @@ data "aws_subnet_ids" "default" {
 }
 
 resource "aws_autoscaling_group" "example" {
+  name = "${var.cluster_name}-instance"
   launch_configuration = aws_launch_configuration.example.name
   vpc_zone_identifier  = data.aws_subnet_ids.default.ids
 
@@ -93,7 +94,7 @@ resource "aws_lb_listener" "http" {
   }
 }
 resource "aws_security_group" "alb" {
-  name = "terraform-example-alb"
+  name = "${var.cluster_name}-alb"
 
   # Allow inbound HTTP requests
   ingress {
@@ -168,8 +169,8 @@ data "terraform_remote_state" "db" {
 terraform {
   backend "s3" {
     # Replace this with your bucket name!
-    bucket         = "terraform-up-and-running-state-ts-pgs"
-    key            = "stage/services/webserver-cluster/terraform.tfstate"
+    bucket         = var.db_remote_state_bucket
+    key            = var.db_demote_state_key
     region         = "eu-west-1"
 
     # Replace this with your DynamoDB table name!
