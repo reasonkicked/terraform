@@ -1,7 +1,7 @@
 
 resource "aws_instance" "example" {
 
-  ami           = "ami-0be057a22c63962cb"
+  ami           = "ami-02df9ea15c1778c9c"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.instance.id]
 
@@ -33,7 +33,7 @@ resource "aws_security_group" "instance" {
 
 
 resource "aws_launch_configuration" "example" {
-  image_id        = "ami-0be057a22c63962cb"
+  image_id        = "ami-02df9ea15c1778c9c"
   instance_type   = var.instance_type
   security_groups = [aws_security_group.instance.id]
   user_data       = data.template_file.user_data.rendered
