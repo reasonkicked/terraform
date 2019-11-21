@@ -14,7 +14,7 @@ resource "aws_dynamodb_table" "terraform-up-and-running-locks-ts-pgs02" {
   }
 }
 resource "aws_db_instance" "prod_database" {
-  identifier_prefix   = "terraform-up-and-running_prod"
+  identifier_prefix   = "terraform-up-and-running-prod"
   engine              = "mysql"
   allocated_storage   = 10
   instance_class      = "db.t2.micro"
