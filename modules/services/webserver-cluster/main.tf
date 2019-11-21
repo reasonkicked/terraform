@@ -71,7 +71,7 @@ resource "aws_autoscaling_group" "example" {
 
 /* load balancery */
 resource "aws_lb" "example" {
-  name               = "terraform-asg-example"
+  name               = "${var.cluster_name}-lb"
   load_balancer_type = "application"
   subnets            = data.aws_subnet_ids.default.ids
   security_groups    = [aws_security_group.alb.id] #security group below
@@ -126,7 +126,7 @@ resource "aws_security_group_rule" "allow_all_outbound" {
 }
 #target group
 resource "aws_lb_target_group" "asg" {
-  name     = "terraform-asg-example"
+  name     = "${var.cluster_name}-asg"
   port     = var.server_port
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.default.id
