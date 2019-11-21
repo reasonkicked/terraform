@@ -32,4 +32,3 @@ resource "aws_autoscaling_schedule" "scale_in_at_night" {
   recurrence            = "0 17 * * *"
   autoscaling_group_name = module.webserver_cluster.asg_name
 }
-dd
