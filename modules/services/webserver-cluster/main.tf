@@ -164,7 +164,7 @@ data "terraform_remote_state" "db" {
 
   config = {
     bucket = "terraform-up-and-running-state-ts-pgs"
-    key    = "stage/data-stores/mysql/terraform.tfstate"
+    key    = "modules/services/webserver-cluster/terraform.tfstate"
     region = "eu-west-1"
   }
 }
@@ -178,7 +178,7 @@ terraform {
     region         = "eu-west-1"
 
     # Replace this with your DynamoDB table name!
-    dynamodb_table = "terraform-up-and-running-locks-ts-pgs01"
+    dynamodb_table = var.db_location
     encrypt        = true
 
   }

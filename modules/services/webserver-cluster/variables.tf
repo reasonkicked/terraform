@@ -32,6 +32,11 @@ variable "max_size" {
   description = "The maximum number of EC2 Instances in the ASG"
   type        = number
 }
+
+variable "db_location" {
+  description = "db location"
+  type = string
+}
 /*
 output "<NAME>" {
   value = <VALUE>
