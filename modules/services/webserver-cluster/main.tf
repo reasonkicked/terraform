@@ -174,7 +174,7 @@ terraform {
   backend "s3" {
     # Replace this with your bucket name!
     bucket         = var.db_remote_state_bucket
-    key            = var.db_demote_state_key
+    key            = var.db_remote_state_key
     region         = "eu-west-1"
 
     # Replace this with your DynamoDB table name!
