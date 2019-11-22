@@ -4,7 +4,7 @@ provider "aws" {
 
 
 resource "aws_db_instance" "prod_database" {
-  identifier_prefix   = "terraform-up-and-running-pro"
+  identifier_prefix   = "terraform-up-and-running-prod"
   engine              = "mysql"
   allocated_storage   = 10
   instance_class      = "db.t2.micro"
