@@ -4,11 +4,11 @@ provider "aws" {
 
 
 resource "aws_db_instance" "prod_database" {
-  identifier_prefix   = "terraform-up-and-running_prod"
+  identifier_prefix   = "terraform-up-and-running-prod"
   engine              = "mysql"
   allocated_storage   = 10
   instance_class      = "db.t2.micro"
-  name                = "example_database_prod"
+  name                = "database_prod"
   username            = "admin"
 
   # How should we set the password?
