@@ -11,7 +11,7 @@ module "webserver_cluster" {
   instance_type = "t2.micro"
   min_size = 2
   max_size = 10
-  db_location = "terraform-up-and-running-prod20191122103229861200000001.cn10audml9ef.eu-west-1.rds.amazonaws.com"
+  db_location = "terraform-up-and-running-prod20191122153338294300000001.cn10audml9ef.eu-west-1.rds.amazonaws.com"
 }
 
 resource "aws_autoscaling_schedule" "scale_out_during_business_hours" {
