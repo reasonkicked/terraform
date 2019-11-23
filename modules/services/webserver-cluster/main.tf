@@ -40,6 +40,7 @@ data "template_file" "user_data_new" {
 
   vars = {
     server_port = var.server_port
+    server_text = var.server_text
   }
 }
 
