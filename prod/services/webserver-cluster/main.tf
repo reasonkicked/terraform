@@ -17,6 +17,7 @@ module "webserver_cluster" {
   custom_tags = {
     Owner      = "team-foo"
     DeployedBy = "terraform"
+    enable_new_user_data = true
   }
 }
 
