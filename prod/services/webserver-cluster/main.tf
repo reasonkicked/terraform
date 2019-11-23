@@ -12,6 +12,8 @@ module "webserver_cluster" {
   min_size = 2
   max_size = 10
   db_location = "terraform-up-and-running-prod20191122153338294300000001.cn10audml9ef.eu-west-1.rds.amazonaws.com"
+   enable_autoscaling   = false
+   
   custom_tags = {
     Owner      = "team-foo"
     DeployedBy = "terraform"
