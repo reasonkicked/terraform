@@ -3,5 +3,6 @@ provider "aws" {
 }
 
 resource "aws_iam_user" "example" {
-  name = "neo"
+  count = 3
+  name  = "neo.${count.index}"
 }
