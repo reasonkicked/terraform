@@ -12,9 +12,9 @@ module "webserver_cluster" {
   instance_type = "t2.micro"
   min_size = 2
   max_size = 2
-   enable_autoscaling   = false
-   db_location = "dd"
-   enable_new_user_data = true
+  enable_autoscaling   = false
+  db_location = "dd"
+  enable_new_user_data = true
 }
 
 resource "aws_security_group_rule" "allow_testing_inbound" {
