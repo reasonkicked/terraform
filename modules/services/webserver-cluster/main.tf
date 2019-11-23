@@ -92,7 +92,7 @@ data "aws_subnet_ids" "default" {
       propagate_at_launch = true
     }
   }*/
-resource "aws_autoscaling_group" "example" {
+/*resource "aws_autoscaling_group" "example" {
   
   launch_configuration = aws_launch_configuration.example.name
   vpc_zone_identifier  = data.aws_subnet_ids.default.ids
@@ -107,6 +107,49 @@ resource "aws_autoscaling_group" "example" {
     key                 = "Name"
     value               = var.cluster_name
     propagate_at_launch = true
+  }
+}*/
+resource "aws_autoscaling_group" "example" {
+  # Explicitly depend on the launch configuration's name so each time it's
+  # replaced, this ASG is also replaced
+  name = "${var.cluster_name}-${aws_launch_configuration.example.name}"
+
+  launch_configuration = aws_launch_configuration.example.name
+  vpc_zone_identifier  = data.aws_subnet_ids.default.ids
+  target_group_arns    = [aws_lb_target_group.asg.arn]
+  health_check_type    = "ELB"
+
+  min_size = var.min_size
+  max_size = var.max_size
+
+  # Wait for at least this many instances to pass health checks before
+  # considering the ASG deployment complete
+  min_elb_capacity = var.min_size
+
+  # When replacing this ASG, create the replacement first, and only delete the
+  # original after
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tag {
+    key                 = "Name"
+    value               = var.cluster_name
+    propagate_at_launch = true
+  }
+
+  dynamic "tag" {
+    for_each = {
+      for key, value in var.custom_tags:
+      key => upper(value)
+      if key != "Name"
+    }
+
+    content {
+      key                 = tag.key
+      value               = tag.value
+      propagate_at_launch = true
+    }
   }
 }
 
