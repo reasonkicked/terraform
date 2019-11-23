@@ -13,6 +13,7 @@ module "webserver_cluster" {
   min_size = 2
   max_size = 2
    enable_autoscaling   = false
+   db_location = "dd"
 }
 
 resource "aws_security_group_rule" "allow_testing_inbound" {
