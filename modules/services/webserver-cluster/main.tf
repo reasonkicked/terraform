@@ -79,7 +79,7 @@ data "aws_vpc" "default" {
 data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 }
- dynamic "tag" {
+ /*dynamic "tag" {
     for_each = {
       for key, value in var.custom_tags:
       key => upper(value)
@@ -91,7 +91,7 @@ data "aws_subnet_ids" "default" {
       value               = tag.value
       propagate_at_launch = true
     }
-  }
+  }*/
 resource "aws_autoscaling_group" "example" {
   
   launch_configuration = aws_launch_configuration.example.name
