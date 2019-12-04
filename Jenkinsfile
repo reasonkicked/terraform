@@ -3,7 +3,7 @@ String credentialsId = 'awsCredentials'
 
 try {
 
-  stages {
+  
   stage('checkout') {
     node {
       cleanWs()
@@ -12,17 +12,6 @@ try {
   }
 
  
-  stage(‘Set Terraform path’) {
- steps {
- script {
- def tfHome = tool name: ‘Terraform’
- env.PATH = “${tfHome}:${env.PATH}”
- }
- sh ‘terraform — version’
- 
- 
- }
- }
  
   // Run terraform init
   stage('init') {
@@ -55,7 +44,7 @@ try {
       }
     }
   }
-  }
+  
   if (env.BRANCH_NAME == 'master') {
 
     // Run terraform apply
