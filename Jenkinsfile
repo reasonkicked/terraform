@@ -10,7 +10,7 @@ try {
   }
 
   // Run terraform init
-  stage('init') {
+  /*stage('init') {
     node {
       withCredentials([[
         $class: 'AmazonWebServicesCredentialsBinding',
@@ -23,7 +23,7 @@ try {
         }
       }
     }
-  }
+  }*/
 
   // Run terraform plan
   stage('plan') {
