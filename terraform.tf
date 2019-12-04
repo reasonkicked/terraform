@@ -16,7 +16,7 @@ git init
 git add main.tf
 git commit -m "Initial commit"
 */
-provider "aws" {
+/*provider "aws" {
     region = "eu-west-1"
 }
 
