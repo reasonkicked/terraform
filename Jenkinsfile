@@ -15,9 +15,9 @@ try {
  
   // Run terraform init
   stage('init') {
-    node {
+    steps {
       
-          sh 'terraform init'
+          sh 'sudo terraform init'
         }
       
     
