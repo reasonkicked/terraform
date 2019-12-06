@@ -16,7 +16,7 @@ try {
   // Run terraform init
   stage('init') {
     node  {
-      
+          sh apt update
           sh 'terraform init -lock=false'
         }
       
