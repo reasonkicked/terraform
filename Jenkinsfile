@@ -15,10 +15,10 @@ try {
  
   // Run terraform init
   stage('init') {
-    node  {
+    node  
       
           sh 'terraform init -lock=false'
-        }
+        
       
     
   }
