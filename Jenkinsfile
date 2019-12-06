@@ -1,7 +1,7 @@
 // Jenkinsfile
 String credentialsId = 'awsCredentials'
 
-//try {
+try {
 
   
   stage('checkout') {
@@ -15,14 +15,14 @@ String credentialsId = 'awsCredentials'
  
   // Run terraform init
   stage('init') {
-    
-      node {
+    node  {
+      
           sh 'terraform init -lock=false'
-      }
+        }
       
     
   }
-/*
+
   // Run terraform plan
   stage('plan') {
     node {
@@ -87,4 +87,3 @@ finally {
     currentBuild.result = 'SUCCESS'
   }
 }
-*/
