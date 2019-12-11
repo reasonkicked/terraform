@@ -18,8 +18,7 @@ resource "docker_container" "wordpress" {
   name  = "wordpress"
   image = "wordpress:latest"
   restart = "always"
-  ports = {
-    internal = "80"
-    external = "8080"
-  }
+  port_internal = "80"
+  port_external = "8080"
+  
 }
