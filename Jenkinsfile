@@ -73,7 +73,7 @@ try {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
-            sh 'terraform destroy'
+            sh 'terraform show'
           }
         }
       }

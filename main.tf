@@ -1,4 +1,8 @@
+provider "aws" {
+  region = "eu-west-1"
+}
 # Terraform state will be stored in S3
+
 terraform {
   backend "s3" {
     bucket = "tsjenkins01-bucket"
@@ -22,8 +26,8 @@ resource "aws_instance" "example" {
     Owner = "tstanislawczyk"
   }
 }
-resource "aws_security_group" "instance" {
-  name = "terraform-example-instance"
+resource "aws_security_group" "instance-jenkins" {
+  name = "terraform-example-instance-jenkins"
 
   ingress {
     from_port   = 8080
