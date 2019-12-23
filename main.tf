@@ -25,6 +25,18 @@ resource "aws_instance" "default" {
     Name = "terraform-default"
   }
 }
+resource "aws_instance" "default2" {
+  ami                    = "var.ami"
+  count                  = 2
+  key_name               = "var.key_name"
+  vpc_security_group_ids = ["aws_security_group.default.id"]
+  source_dest_check      = false
+  instance_type          = "var.instance_type"
+
+  tags {
+    Name = "terraform-default"
+  }
+}
 
 # Create Security Group for EC2
 resource "aws_security_group" "default" {
