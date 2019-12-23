@@ -34,7 +34,7 @@ resource "aws_instance" "default2" {
   source_dest_check      = false
   instance_type          = "var.instance_type"
 
-  tags {
+  tags = {
     Name = "terraform-default2"
     Owner = "tstanislawczyk"
   }
