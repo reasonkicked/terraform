@@ -7,55 +7,27 @@ terraform {
   }
 }
 
-# Use AWS Terraform provider
-provider "aws" {
-  region = "eu-west-1"
-}
+resource "aws_instance" "example" {
+  ami                    = "ami-0c55b159cbfafe1f0"
+  instance_type          = "t2.micro"
 
-# Create EC2 instance
-resource "aws_instance" "default" {
-  ami                    = "var.ami"
-  count                  = 2
-  key_name               = "var.key_name"
-  vpc_security_group_ids = ["aws_security_group.default.id"]
-  source_dest_check      = false
-  instance_type          = "var.instance_type"
+  user_data = <<-EOF
+              #!/bin/bash
+              echo "Hello, World" > index.html
+              nohup busybox httpd -f -p 8080 &
+              EOF
 
   tags = {
-    Name = "terraform-default"
-    Owner = "tstanislawczyk"
+    Name = "terraform-example"
   }
 }
-resource "aws_instance" "default2" {
-  ami                    = "var.ami"
-  count                  = 2
-  key_name               = "var.key_name"
-  vpc_security_group_ids = ["aws_security_group.default.id"]
-  source_dest_check      = false
-  instance_type          = "var.instance_type"
-
-  tags = {
-    Name = "terraform-default2"
-    Owner = "tstanislawczyk"
-  }
-}
-
-# Create Security Group for EC2
-resource "aws_security_group" "default" {
-  name = "terraform-default-sg"
+resource "aws_security_group" "instance" {
+  name = "terraform-example-instance"
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
 }
