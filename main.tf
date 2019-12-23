@@ -12,7 +12,7 @@ terraform {
 }
 
 resource "aws_instance" "example" {
-  ami                    = "ami-07a3c7461cc82f8ff"
+  ami                    = "ami-02df9ea15c1778c9c"
   instance_type          = "t2.micro"
 
   user_data = <<-EOF
