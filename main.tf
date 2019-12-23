@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "aws_instance" "example" {
-  ami                    = "ami-0c55b159cbfafe1f0"
+  ami                    = "ami-07a3c7461cc82f8ff"
   instance_type          = "t2.micro"
 
   user_data = <<-EOF
@@ -19,6 +19,7 @@ resource "aws_instance" "example" {
 
   tags = {
     Name = "terraform-example"
+    Owner = "tstanislawczyk"
   }
 }
 resource "aws_security_group" "instance" {
