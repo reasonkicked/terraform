@@ -137,7 +137,7 @@ data "aws_subnet_ids" "default" {
 
 
 */
-/*
+
 resource "aws_launch_configuration" "example" {
   image_id        = "ami-02df9ea15c1778c9c"
   instance_type   = "t2.micro"
@@ -261,4 +261,3 @@ output "alb_dns_name" {
   value       = aws_lb.example.dns_name
   description = "The domain name of the load balancer"
 }
-*/
