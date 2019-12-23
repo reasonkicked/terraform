@@ -23,6 +23,7 @@ resource "aws_instance" "default" {
 
   tags {
     Name = "terraform-default"
+    Owner = "tstanislawczyk"
   }
 }
 resource "aws_instance" "default2" {
@@ -34,7 +35,8 @@ resource "aws_instance" "default2" {
   instance_type          = "var.instance_type"
 
   tags {
-    Name = "terraform-default"
+    Name = "terraform-default2"
+    Owner = "tstanislawczyk"
   }
 }
 
