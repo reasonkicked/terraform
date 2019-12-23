@@ -12,10 +12,6 @@ try {
   }
 
 
-
-
-
- 
  
   // Run terraform init
  stage('init') {
@@ -77,7 +73,7 @@ try {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
-            sh 'terraform show'
+            sh 'terraform destroy'
           }
         }
       }
