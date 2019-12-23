@@ -24,6 +24,7 @@ resource "aws_instance" "example" {
   tags = {
     Name = "terraform-example"
     Owner = "tstanislawczyk"
+    Description = "opis testowy"
   }
 }
 resource "aws_security_group" "instance-jenkins" {
