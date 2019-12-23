@@ -26,6 +26,10 @@ resource "aws_instance" "example" {
     Owner = "tstanislawczyk"
     Description = "opis testowy"
   }
+  lifecycle {
+    create_before_destroy = true
+  }
+
 }
 resource "aws_security_group" "instance-jenkins" {
   name = "terraform-example-instance-jenkins"
