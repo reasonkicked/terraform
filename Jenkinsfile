@@ -1,4 +1,4 @@
-// Jenkinsfile
+/*// Jenkinsfile
 String credentialsId = 'awsCredentials'
 
 try {
@@ -93,3 +93,4 @@ finally {
     currentBuild.result = 'SUCCESS'
   }
 }
+*/
